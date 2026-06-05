@@ -7,106 +7,88 @@
         @import url('https://fonts.googleapis.com/css2?family=Iskoola+Pota&display=swap');
         
         body {
-            background: radial-gradient(circle at center, #1a1a2e, #0f0f1a);
-            color: #e0e0e0;
+            /* බෞද්ධ පසුබිම: සන්සුන් නිල්/ගෝල්ඩන් මිශ්‍රණය */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1545558014-86980a7e6301?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
             font-family: 'Iskoola Pota', sans-serif;
             margin: 0;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .header { text-align: center; margin-bottom: 40px; }
-        
-        #live-clock {
-            font-size: 1.8rem;
-            color: #00d4ff;
-            text-shadow: 0 0 10px #00d4ff;
-            margin-top: 10px;
-        }
-
-        .main-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        .viewer-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 20px;
-            border-radius: 20px;
             text-align: center;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(15px);
         }
 
-        .placeholder-text { color: #555; font-size: 1.5rem; }
+        .header { background: rgba(0,0,0,0.5); padding: 20px; border-radius: 15px; border-bottom: 2px solid #ffcc00; display: inline-block; }
+        
+        #date-time { font-size: 1.5rem; color: #ffcc00; margin-top: 10px; font-weight: bold; }
 
-        .sidebar {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 30px auto;
         }
 
+        .video-player { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 20px; border: 1px solid #ffcc00; }
+        iframe { width: 100%; height: 500px; border-radius: 10px; }
+
+        .menu-list { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 20px; backdrop-filter: blur(10px); }
+        
         button {
             width: 100%;
             padding: 15px;
-            margin: 8px 0;
-            background: linear-gradient(90deg, #4a00e0, #8e2de2);
-            color: white;
+            margin: 10px 0;
+            background: #b8860b;
+            color: #fff;
             border: none;
-            border-radius: 10px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: 0.4s;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            border-left: 5px solid #ffcc00;
         }
 
-        button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(142,45,226,0.4); }
+        button:hover { background: #ffcc00; color: #000; }
+        
+        footer { margin-top: 50px; font-size: 0.8rem; color: #888; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>අකාලික පාරමිතා</h1>
-    <div id="live-clock"></div>
-</div>
-
-<div class="main-container">
-    <div class="viewer-box">
-        <div class="placeholder-text">වීඩියෝ දර්ශනයක් තෝරන්න...</div>
-        <p id="status-text" style="color: #00d4ff;">සිස්ටම් එක ක්‍රියාකාරීයි (Ready)</p>
+    <div class="header">
+        <h1>අකාලික පාරමිතා</h1>
+        <div id="date-time"></div>
     </div>
 
-    <div class="sidebar">
-        <h3>ජාතක කතා දර්ශකය</h3>
-        <button onclick="updateStatus('සස ජාතකය ප්ලේ වෙමින් පවතී...')">සස ජාතකය</button>
-        <button onclick="updateStatus('අංගුලිමාල දර්ශනය ප්ලේ වෙමින් පවතී...')">අංගුලිමාල</button>
-        <button onclick="updateStatus('තුන් බිය දුරු කිරීම ප්ලේ වෙමින් පවතී...')">තුන් බිය දුරු කිරීම</button>
-        <button onclick="updateStatus('නාලාගිරි දමනය ප්ලේ වෙමින් පවතී...')">නාලාගිරි දමනය</button>
+    <div class="main-wrapper">
+        <div class="video-player">
+            <iframe id="videoPlayer" src="https://www.youtube.com/embed/YOUR_ID_HERE" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="menu-list">
+            <h3>දේශනා මාලාව</h3>
+            <button onclick="changeVideo('ID1')">සස ජාතකය</button>
+            <button onclick="changeVideo('ID2')">අංගුලිමාල දමනය</button>
+            <button onclick="changeVideo('ID3')">නාලාගිරි දමනය</button>
+            <button onclick="changeVideo('ID4')">කරුණා ගුණය</button>
+        </div>
     </div>
-</div>
 
-<script>
-    function updateClock() {
-        const now = new Date();
-        document.getElementById('live-clock').innerText = now.toLocaleTimeString();
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+    <footer>තථාගතයන් වහන්සේගේ ශ්‍රී සද්ධර්මය - අකාලික පාරමිතා Project 2026</footer>
 
-    function updateStatus(msg) {
-        document.getElementById('status-text').innerText = msg;
-    }
-</script>
+    <script>
+        function updateDisplay() {
+            const now = new Date();
+            document.getElementById('date-time').innerText = now.toLocaleDateString() + " | " + now.toLocaleTimeString();
+        }
+        setInterval(updateDisplay, 1000);
+        updateDisplay();
 
+        function changeVideo(id) {
+            document.getElementById('videoPlayer').src = "https://www.youtube.com/embed/" + id;
+        }
+    </script>
 </body>
 </html>
