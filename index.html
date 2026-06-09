@@ -3,69 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>අකාලික පාරමිතා - නිල ප්‍රකාශනය</title>
+    <title>අකාලික පාරමිතා</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Iskoola+Pota&display=swap');
         
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1545558014-86980a7e6301?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
             min-height: 100vh;
-            color: #ffffff;
+            color: #ffcc00;
             font-family: 'Iskoola Pota', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .header {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px 40px;
-            border-radius: 50px;
-            border: 1px solid #ffcc00;
-            margin-bottom: 30px;
-            text-align: center;
+        /* පසුබිමේ අකුරු පා වෙන විදිහ */
+        .bg-letters {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; opacity: 0.1;
+            font-size: 50px;
+            pointer-events: none;
+            display: flex; flex-wrap: wrap; justify-content: space-around;
         }
+
+        .header { text-align: center; margin-bottom: 20px; }
+        h1 { font-size: 3rem; text-shadow: 0 0 20px #ffcc00; }
 
         .video-wrapper {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
             border-radius: 20px;
             border: 2px solid #ffcc00;
             max-width: 800px;
-            width: 100%;
+            width: 90%;
         }
 
         iframe { width: 100%; height: 450px; border-radius: 10px; border: none; }
 
-        .action-box {
+        .footer-box { margin-top: 30px; text-align: center; color: white; }
+        
+        .dl-btn {
+            display: block;
             margin-top: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
             padding: 15px;
-            border: none;
+            background: #b38600;
+            color: white;
+            text-decoration: none;
             border-radius: 10px;
-            cursor: pointer;
-            font-size: 1rem;
             font-weight: bold;
             transition: 0.3s;
-            text-align: center;
-            text-decoration: none;
-            color: #000;
         }
-
-        .copy-btn { background: #ffcc00; }
-        .dl-btn { background: #27ae60; color: #fff; }
         
-        .btn:hover { opacity: 0.8; transform: scale(1.02); }
+        .dl-btn:hover { background: #ffcc00; color: #000; }
     </style>
 </head>
 <body>
+
+    <div class="bg-letters">
+        <span>ස</span><span>ධ</span><span>ම්</span><span>ම</span><span>ප</span><span>ා</span><span>ල</span><span>ී</span>
+    </div>
 
     <div class="header">
         <h1>අකාලික පාරමිතා</h1>
@@ -73,19 +75,12 @@
 
     <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/bMwZAi-xopU" allowfullscreen></iframe>
-        
-        <div class="action-box">
-            <button class="btn copy-btn" onclick="copyLink()">Copy Link</button>
-            <a href="https://yt1d.net/en11/" target="_blank" class="btn dl-btn">මෙතැනින් බාගන්න</a>
-        </div>
+        <a href="https://yt1d.net/en11/" target="_blank" class="dl-btn">වීඩියෝව බාගත කරගන්න</a>
     </div>
 
-    <script>
-        function copyLink() {
-            const link = "https://youtu.be/bMwZAi-xopU";
-            navigator.clipboard.writeText(link);
-            alert("ලින්ක් එක කොපි වුණා!");
-        }
-    </script>
+    <div class="footer-box">
+        <p>created by viruna randinu</p>
+    </div>
+
 </body>
 </html>
