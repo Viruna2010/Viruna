@@ -21,98 +21,70 @@
 
         .header {
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px 60px;
+            padding: 20px 40px;
             border-radius: 50px;
             border: 1px solid #ffcc00;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-align: center;
-            backdrop-filter: blur(10px);
         }
 
-        .main-wrapper {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .video-container {
-            background: #000;
-            padding: 10px;
-            border-radius: 15px;
-            border: 2px solid #ffcc00;
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
-        }
-
-        iframe { width: 100%; height: 450px; border-radius: 10px; }
-
-        .menu-list {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
+        .video-wrapper {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
             border-radius: 20px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid #ffcc00;
+            max-width: 800px;
+            width: 100%;
         }
 
-        button {
-            width: 100%;
-            padding: 18px;
-            margin: 10px 0;
-            background: rgba(0, 0, 0, 0.3);
-            color: #ffcc00;
-            border: 1px solid #ffcc00;
+        iframe { width: 100%; height: 450px; border-radius: 10px; border: none; }
+
+        .action-box {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-
-        button:hover { background: #ffcc00; color: #000; font-weight: bold; }
-
-        .download-btn {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            padding: 18px;
-            background: #27ae60;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
+            font-size: 1rem;
             font-weight: bold;
-            font-size: 1.2rem;
             transition: 0.3s;
+            text-align: center;
+            text-decoration: none;
+            color: #000;
         }
 
-        .download-btn:hover { background: #219150; transform: scale(1.02); }
+        .copy-btn { background: #ffcc00; }
+        .dl-btn { background: #27ae60; color: #fff; }
+        
+        .btn:hover { opacity: 0.8; transform: scale(1.02); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <h1>අකාලික පාරමිතා - උත්සව ප්‍රකාශනය</h1>
+        <h1>අකාලික පාරමිතා</h1>
     </div>
 
-    <div class="main-wrapper">
-        <div class="video-container">
-            <iframe id="videoPlayer" src="https://www.youtube.com/embed/bMwZAi-xopU" allowfullscreen></iframe>
-            <a id="downloadLink" href="#" class="download-btn" target="_blank">1080p වීඩියෝව බාගන්න (Download)</a>
-        </div>
-
-        <div class="menu-list">
-            <h3>දේශනා මාලාව</h3>
-            <button onclick="changeVideo('ZATfWmX9G6E', '#')">බුද්ධ චරිතය</button>
-            <button onclick="changeVideo('VIDEO_ID_2', '#')">අංගුලිමාල දමනය</button>
-            <button onclick="changeVideo('VIDEO_ID_3', '#')">නාලාගිරි දමනය</button>
-            <button onclick="changeVideo('VIDEO_ID_4', '#')">සස ජාතකය</button>
-            <button onclick="changeVideo('bMwZAi-xopU', '#')">නව වීඩියෝව</button>
+    <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/bMwZAi-xopU" allowfullscreen></iframe>
+        
+        <div class="action-box">
+            <button class="btn copy-btn" onclick="copyLink()">Copy Link</button>
+            <a href="https://yt1d.net/en11/" target="_blank" class="btn dl-btn">මෙතැනින් බාගන්න</a>
         </div>
     </div>
 
     <script>
-        function changeVideo(id, dlLink) {
-            document.getElementById('videoPlayer').src = "https://www.youtube.com/embed/" + id;
-            document.getElementById('downloadLink').href = dlLink;
+        function copyLink() {
+            const link = "https://youtu.be/bMwZAi-xopU";
+            navigator.clipboard.writeText(link);
+            alert("ලින්ක් එක කොපි වුණා!");
         }
     </script>
 </body>
